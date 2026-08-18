@@ -2058,11 +2058,12 @@
         <div class="frame panel" style="margin-bottom:12px">
           <div class="ttl"><span class="ic" data-ic="key"></span>n8n에 연결할 값 2개</div>
           <div class="dl">
-            <div class="row2"><b>Host</b><span>프로젝트 설정의 <strong>Project URL</strong></span></div>
-            <div class="row2"><b>Service Key</b><span>API 키 목록의 <strong>service_role</strong> (가려져 있으니 Reveal 후 복사)</span></div>
+            <div class="row2"><b>Host</b><span><strong>Integrations → Data API</strong>의 API URL. 끝의 <span style="font-family:'JetBrains Mono',monospace;font-size:12.5px">/rest/v1/</span>은 <strong>지우고</strong> 넣습니다</span></div>
+            <div class="row2"><b>Secret Key</b><span><strong>Project Settings → API Keys</strong>의 Secret keys에서 <span style="font-family:'JetBrains Mono',monospace;font-size:12.5px">sb_secret_…</span> 복사</span></div>
           </div>
+          <p style="margin-top:10px;font-size:14px;color:var(--muted)">화면에는 <span style="font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--pink-soft)">.../rest/v1/</span>까지 나오지만 <strong style="color:var(--ink)">n8n이 알아서 붙입니다.</strong> 그대로 복사하면 연결에 실패합니다.</p>
         </div>
-        <div class="warn" style="font-size:14px"><strong>service_role은 관리자 권한 키입니다.</strong> 화면 공유 시 가리고, 노출되면 재발급하세요.</div>
+        <div class="warn" style="font-size:14px"><strong>Secret Key는 관리자 권한 키입니다.</strong> 화면 공유 시 가리고, 노출되면 재발급하세요. <strong>publishable·anon 키를 넣으면</strong> 연결은 되지만 저장 단계에서 권한 오류가 납니다.</div>
       </div>
     </div>
   </div>
@@ -2460,7 +2461,8 @@ ESCALATE 도구로 담당자에게 전달한다.</div>
         <tr><td>AI가 도구를 안 씀</td><td>도구 설명이 모호함</td><td>이름을 짧게 바꾸고 "언제 쓰는지"를 명시</td></tr>
         <tr><td>RAG가 못 찾음</td><td>적재를 안 함 / 설정 불일치</td><td>Supabase에 행이 쌓였는지 확인, 테이블·함수·임베딩 모델 일치 확인</td></tr>
         <tr><td>저장 시 dimension 에러</td><td>벡터 크기 불일치</td><td>SQL의 <span style="font-family:'JetBrains Mono',monospace;font-size:12.5px">vector(N)</span> 과 임베딩 모델의 차원을 맞춤</td></tr>
-        <tr><td>Supabase 연결 실패</td><td>URL·키 오입력</td><td>프로젝트 설정에서 Project URL과 service_role 키 재확인</td></tr>
+        <tr><td>Supabase 연결 실패</td><td>Host 끝에 <span style="font-family:'JetBrains Mono',monospace;font-size:12.5px">/rest/v1/</span>를 붙여 넣음</td><td>Host는 <span style="font-family:'JetBrains Mono',monospace;font-size:12.5px">https://…supabase.co</span> 까지만. 뒷부분은 n8n이 붙입니다</td></tr>
+        <tr><td>Supabase 권한 오류</td><td>publishable·anon 키를 입력</td><td>API Keys에서 <span style="font-family:'JetBrains Mono',monospace;font-size:12.5px">sb_secret_…</span> (Secret key)로 교체</td></tr>
         <tr><td>다음 노드가 여러 번 실행됨</td><td>앞 노드가 아이템을 여러 개 내보냄</td><td>앞 노드에서 개수를 제한하거나, 합치는 노드를 하나 추가</td></tr>
         <tr><td>0 items로 멈춤</td><td>앞 노드가 아무것도 못 가져옴</td><td>필터 조건 확인 (예: 안 읽은 메일이 없을 때)</td></tr>
         <tr><td>OpenAI 429 / 한도 초과</td><td>잔액 부족 또는 호출 과다</td><td>Billing에서 잔액 확인, 잠시 후 재시도</td></tr>
@@ -2541,7 +2543,7 @@ ESCALATE 도구로 담당자에게 전달한다.</div>
         <div class="frame gr panel" style="margin-bottom:14px">
           <ul class="chk gr">
             <li>SQL Editor의 <strong>Quickstarts → LangChain 템플릿</strong> 위치 확인</li>
-            <li>Project URL과 <strong>service_role 키</strong>의 현재 메뉴 경로</li>
+            <li><strong>Data API</strong>의 API URL과 <strong>Secret key</strong>의 현재 메뉴 경로 (자주 바뀌는 화면입니다)</li>
             <li>임베딩 모델의 <strong>차원과 vector(N) 일치</strong> 확인</li>
             <li>적재 실행 후 <strong>행이 실제로 쌓이는지</strong></li>
             <li>조각에 <strong>파일명 메타데이터</strong>가 함께 저장되는지</li>
