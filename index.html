@@ -308,6 +308,39 @@
   .jsv .nn{color:var(--blue)}
   .jsv .pp{color:var(--muted)}
 
+  /* ── link cards (appendix) ── */
+  .lnkgrid{display:grid;gap:20px;grid-template-columns:1fr 1fr}
+  .lnkcard{display:flex;flex-direction:column;gap:12px;padding:24px 26px;text-decoration:none;
+    background:var(--card);border:1px solid var(--line);border-radius:10px;
+    transition:border-color .18s,background .18s,transform .18s}
+  .lnkcard:hover{border-color:var(--pink-line);transform:translateY(-2px);
+    background:linear-gradient(var(--pink-tint),var(--pink-tint)),var(--card)}
+  .lnkcard .top{display:flex;align-items:center;gap:11px}
+  .lnkcard .ic{width:23px;height:23px;color:var(--pink);flex-shrink:0}
+  .lnkcard .ic svg{width:100%;height:100%}
+  .lnkcard .nm{font-size:18.5px;font-weight:800;color:var(--ink);line-height:1.3}
+  .lnkcard .ds{font-size:14.8px;color:var(--body);line-height:1.68}
+  .lnkcard .ds strong{color:var(--ink);font-weight:700}
+  .lnkcard .url{display:flex;align-items:center;gap:10px;margin-top:auto;padding:10px 13px;
+    background:var(--code-bg);border:1px solid var(--line);border-radius:7px;
+    font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--green);
+    overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+  .lnkcard .url::after{content:"↗";margin-left:auto;font-family:'Pretendard',sans-serif;
+    font-size:14px;color:var(--muted);flex-shrink:0}
+  .lnkcard:hover .url::after{color:var(--pink)}
+
+  .lnklist{display:flex;flex-direction:column;gap:8px}
+  .lnkrow{display:flex;align-items:baseline;gap:13px;padding:11px 15px;text-decoration:none;
+    background:var(--card);border:1px solid var(--line);border-radius:8px;transition:all .18s}
+  .lnkrow:hover{border-color:var(--pink-line);
+    background:linear-gradient(var(--pink-tint),var(--pink-tint)),var(--card)}
+  .lnkrow b{flex-shrink:0;min-width:78px;font-size:14.5px;font-weight:700;color:var(--ink)}
+  .lnkrow .u{font-family:'JetBrains Mono',monospace;font-size:12.8px;color:var(--green)}
+  .lnkrow .d{margin-left:auto;font-size:13px;color:var(--muted);text-align:right;flex-shrink:0}
+
+  @media(max-width:900px){.lnkgrid{grid-template-columns:1fr}
+    .lnkrow{flex-wrap:wrap;gap:6px 13px}.lnkrow .d{margin-left:0;text-align:left;width:100%}}
+
   /* ── nav ── */
   #nav{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);
     display:flex;align-items:center;gap:13px;background:rgba(28,28,35,0.92);
@@ -2437,9 +2470,50 @@ ESCALATE 도구로 담당자에게 전달한다.</div>
   </div>
 </div>
 
+<div class="slide" id="apx-links">
+  <div class="head">
+    <div class="eyebrow green">APPENDIX A4</div>
+    <h2 class="s-title">교육 <span class="pk">참고 자료</span></h2>
+    <p class="s-sub">아래 카드를 <strong style="color:var(--ink)">클릭하면 바로 열립니다</strong></p>
+  </div>
+  <div class="body dense">
+    <div class="lnkgrid" style="margin-bottom:18px">
+      <a class="lnkcard" href="https://app.notion.com/p/n8n-3c07ac7453338013a5ebc806949801a5" target="_blank" rel="noopener">
+        <div class="top">
+          <span class="ic" data-ic="doc"></span>
+          <span class="nm">n8n 교육용 프롬프트 리스트</span>
+        </div>
+        <div class="ds">오늘 실습에서 사용한 <strong>시스템 프롬프트 전문</strong>과 상황별 예시를 모아둔 Notion 페이지입니다. <strong>복사해서 그대로 붙여넣어</strong> 쓰시면 됩니다.</div>
+        <div class="url">app.notion.com/p/n8n-3c07ac74…</div>
+      </a>
+      <a class="lnkcard" href="https://docs.google.com/spreadsheets/d/1Ykf-hWieOv0VBxXPU4jerwBdUG91qxbksqH0DTPLy9I/edit?gid=0#gid=0" target="_blank" rel="noopener">
+        <div class="top">
+          <span class="ic" data-ic="sheet"></span>
+          <span class="nm">n8n 교육용 샘플 구글 시트</span>
+        </div>
+        <div class="ds">실습에 사용할 <strong>샘플 데이터</strong>입니다. 원본은 수정하지 마시고 <strong>파일 → 사본 만들기</strong>로 내 드라이브에 복사한 뒤, 그 사본을 n8n에 연결하세요.</div>
+        <div class="url">docs.google.com/spreadsheets/d/1Ykf-hWie…</div>
+      </a>
+    </div>
+    <div class="clabel pk"><span class="ic" data-ic="book"></span>n8n 공식 자료</div>
+    <div class="lnklist" style="margin-bottom:14px">
+      <a class="lnkrow" href="https://docs.n8n.io" target="_blank" rel="noopener">
+        <b>공식 문서</b><span class="u">docs.n8n.io</span><span class="d">노드별 설명이 가장 정확합니다</span>
+      </a>
+      <a class="lnkrow" href="https://n8n.io/workflows" target="_blank" rel="noopener">
+        <b>템플릿</b><span class="u">n8n.io/workflows</span><span class="d">남이 만든 것을 뜯어보는 게 가장 빠릅니다</span>
+      </a>
+      <a class="lnkrow" href="https://community.n8n.io" target="_blank" rel="noopener">
+        <b>커뮤니티</b><span class="u">community.n8n.io</span><span class="d">에러 메시지로 검색하면 대개 나옵니다</span>
+      </a>
+    </div>
+    <div class="note"><strong>이 교육자료 주소:</strong> <span style="font-family:'JetBrains Mono',monospace;font-size:13.5px;color:var(--green)">aibridge-leo.github.io/n8n_tutorial</span> — 교육 후에도 언제든 다시 열어보실 수 있고, 위 링크도 여기서 바로 누를 수 있습니다.</div>
+  </div>
+</div>
+
 <div class="slide" id="apx-rehearsal">
   <div class="head">
-    <div class="eyebrow green">APPENDIX A4 · 강사용</div>
+    <div class="eyebrow green">APPENDIX A5 · 강사용</div>
     <h2 class="s-title">교육 전 <span class="pk">리허설 체크리스트</span></h2>
     <p class="s-sub">화면과 동작은 버전에 따라 달라집니다. 아래 항목은 <strong style="color:var(--ink)">당일 버전에서 직접 확인</strong>하세요</p>
   </div>
@@ -2640,7 +2714,8 @@ const PARTS=[
   {n:'A1',    t:'복붙용 프롬프트',          id:'apx-prompt',sec:'APPENDIX'},
   {n:'A2',    t:'용어 사전',               id:'apx-terms'},
   {n:'A3',    t:'에러 대처 사전',           id:'apx-trouble'},
-  {n:'A4',    t:'강사용 리허설 체크리스트',    id:'apx-rehearsal'},
+  {n:'A4',    t:'교육 참고 자료 링크',        id:'apx-links'},
+  {n:'A5',    t:'강사용 리허설 체크리스트',    id:'apx-rehearsal'},
 ];
 const sbList=document.getElementById('sb-list');
 let sbItems=[];
